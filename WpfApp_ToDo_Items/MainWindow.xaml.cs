@@ -51,15 +51,21 @@ namespace WpfApp_ToDo_Items
 
         private void OnAddClick(object sender, RoutedEventArgs e)
         {
-            
-            MyTask task = new MyTask()
+            //  if (taskName != null && taskName != String.Empty && !taskName.All(x => x == ' '))  //  100 false/true
+            //  if (taskName != null && taskName != String.Empty || taskName.Any(x => x != ' '))  // 9 stop false/true
+
+            if (!string.IsNullOrWhiteSpace(taskName))
             {
-                Description = TaskDescription,
-                Name = TaskName
-            };
-            myTasks.Add(task);
-            TaskDescription = string.Empty;
-            TaskName = string.Empty;
+                MyTask task = new MyTask()
+                {
+                    Description = TaskDescription,
+                    Name = TaskName
+                };
+                myTasks.Add(task);
+                TaskDescription = string.Empty;
+                TaskName = string.Empty;
+            }
+            
             
         }
     }

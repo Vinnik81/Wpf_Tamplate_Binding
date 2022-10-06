@@ -19,8 +19,24 @@
             <TextBox Text="{Binding TaskDescription}" TextWrapping="Wrap" Height="100"/>
             <Button Click="OnAddClick">Add</Button>
         </StackPanel>
-        <ListBox DisplayMemberPath="Name" ItemsSource="{Binding MyTasks}" Grid.Column="1">
-            
+        <!--DisplayMemberPath="Name"-->
+        <ListBox  ItemsSource="{Binding MyTasks}" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBoxItem>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock FontSize="14" Text="{Binding Description}"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                </DataTemplate> 
+            </ListBox.ItemTemplate>
+            <!--<ListBoxItem>
+                <StackPanel>
+                    <TextBlock Text="Task name:"/>
+                    <TextBlock FontSize="14" Text="Task description:"/>
+                </StackPanel>
+            </ListBoxItem>-->
         </ListBox>
     </Grid>
 </Window>
