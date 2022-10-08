@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfApp_HomeWork_Tasks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_HomeWork_Tasks"
+        mc:Ignorable="d"
+        Title="MainWindow" FontSize="20" Height="470" MaxHeight="500" MinHeight="460" Width="600">
+    <Window.Resources>
+        <ResourceDictionary Source="DictionaryStyleButtom.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label>Task name:</Label>
+            <TextBox Text="{Binding TaskName}"/>
+            <TextBox/>
+            <Label>Task description:</Label>
+            <TextBox Text="{Binding TaskDescription}" TextWrapping="Wrap" Height="100"/>
+            <Label>Date of completion:</Label>
+            <TextBox Text="{Binding TaskDate}"/>
+            <CheckBox x:Name="check" IsChecked="False" FontSize="20">Done</CheckBox>
+            <Button  Template="{StaticResource roundedButton}" Click="OnAddClick">Add</Button>
+            <Button Click="Edit_Click" Template="{StaticResource roundedButton}">Edit</Button>
+            <Button Click="RemoveButton_Click"
+                VerticalAlignment="Bottom" 
+                    Style="{StaticResource custtomButton}" 
+                    Template="{StaticResource roundedButton}">Remove</Button>
+        </StackPanel>
+       
+        <ListBox x:Name="listBox" ItemsSource="{Binding MyTasks}" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBoxItem>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock FontSize="14" Text="{Binding Description}"/>
+                            <TextBlock Text="{Binding Date}"/>
+                            <TextBlock Text="{Binding Done}"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+    </Grid>
+</Window>
