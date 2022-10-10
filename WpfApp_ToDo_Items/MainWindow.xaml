@@ -14,9 +14,10 @@
         <StackPanel Grid.Column="0">
             <Label>Task name:</Label>
             <TextBox Text="{Binding TaskName}"/>
-            <TextBox/>
             <Label>Task description:</Label>
             <TextBox Text="{Binding TaskDescription}" TextWrapping="Wrap" Height="100"/>
+            <DatePicker SelectedDate="{Binding TaskDeadline}"></DatePicker>
+            <CheckBox IsChecked="{Binding TaskDone}" VerticalContentAlignment="Center">Done</CheckBox>
             <Button Click="OnAddClick">Add</Button>
         </StackPanel>
         <!--DisplayMemberPath="Name"-->
@@ -27,6 +28,8 @@
                         <StackPanel>
                             <TextBlock Text="{Binding Name}"/>
                             <TextBlock FontSize="14" Text="{Binding Description}"/>
+                            <TextBlock FontSize="14" Text="{Binding Deadline, StringFormat=Deadline : {0:dd.MM.yyyy}}"/>
+                            <TextBlock FontSize="14" Text="{Binding IsDone, StringFormat=Done : {0}}"/>
                         </StackPanel>
                     </ListBoxItem>
                 </DataTemplate> 

@@ -27,9 +27,13 @@ namespace WpfApp_ToDo_Items
        
         private string taskName;
         private string taskDescription;
+        private bool taskDone;
+        private DateTime taskDeadline = DateTime.Now;
         private ObservableCollection<MyTask> myTasks;
         public string TaskName { get => taskName; set => OnChanged(out taskName, value);}
         public string TaskDescription { get => taskDescription; set => OnChanged(out taskDescription, value);}
+        public bool TaskDone { get => taskDone; set => OnChanged(out taskDone, value);}
+        public DateTime TaskDeadline { get => taskDeadline; set => OnChanged(out taskDeadline, value);}
         public ObservableCollection<MyTask> MyTasks { get => myTasks; set => OnChanged(out myTasks, value);}
 
        
@@ -54,17 +58,22 @@ namespace WpfApp_ToDo_Items
             //  if (taskName != null && taskName != String.Empty && !taskName.All(x => x == ' '))  //  100 false/true
             //  if (taskName != null && taskName != String.Empty || taskName.Any(x => x != ' '))  // 9 stop false/true
 
-            if (!string.IsNullOrWhiteSpace(taskName))
+            if (!string.IsNullOrWhiteSpace(taskName) && !string.IsNullOrWhiteSpace(taskDescription))
             {
                 MyTask task = new MyTask()
                 {
                     Description = TaskDescription,
-                    Name = TaskName
+                    Name = TaskName,
+                    Deadline = TaskDeadline,
+                    IsDone = TaskDone
                 };
                 myTasks.Add(task);
                 TaskDescription = string.Empty;
                 TaskName = string.Empty;
+                TaskDone = false;
+                TaskDeadline = DateTime.Now;
             }
+            else MessageBox.Show("Не заполнены поля");
             
             
         }
